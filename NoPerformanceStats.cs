@@ -95,7 +95,7 @@
             }
         }
 
-        private static IEnumerator ApplyPerformanceFiltersPatch(
+        private static IntPtr ApplyPerformanceFiltersPatch(
             IntPtr avatarObjectPtr,
             IntPtr performanceStatsPtr,
             int minimumPerformanceRating,
@@ -103,18 +103,18 @@
             IntPtr stackPtr)
         {
             return disablePerformanceStatsEntry.Value
-                       ? null
+                       ? IntPtr.Zero
                        : applyPerformanceFiltersEnumerator(avatarObjectPtr, performanceStatsPtr, minimumPerformanceRating, onBlockPtr, stackPtr);
         }
 
-        private static IEnumerator CalculatePerformanceStatsEnumeratorPatch(
+        private static IntPtr CalculatePerformanceStatsEnumeratorPatch(
             IntPtr avatarNamePtr,
             IntPtr avatarObjectPtr,
             IntPtr performanceStatsPtr,
             IntPtr stackPtr)
         {
             return disablePerformanceStatsEntry.Value
-                       ? null
+                       ? IntPtr.Zero
                        : calculatePerformanceStatsEnumerator(avatarNamePtr, avatarObjectPtr, performanceStatsPtr, stackPtr);
         }
 
@@ -128,14 +128,14 @@
         private delegate void CalculatePerformanceStats(IntPtr avatarNamePtr, IntPtr avatarObjectPtr, IntPtr performanceStatsPtr, IntPtr stackPtr);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        private delegate IEnumerator CalculatePerformanceStatsEnumerator(
+        private delegate IntPtr CalculatePerformanceStatsEnumerator(
             IntPtr avatarNamePtr,
             IntPtr avatarObjectPtr,
             IntPtr performanceStatsPtr,
             IntPtr stackPtr);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        private delegate IEnumerator ApplyPerformanceFiltersEnumerator(
+        private delegate IntPtr ApplyPerformanceFiltersEnumerator(
             IntPtr avatarObjectPtr,
             IntPtr performanceStatsPtr,
             int minimumPerformanceRating,
