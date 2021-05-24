@@ -6,8 +6,6 @@
     using System.Reflection;
     using System.Runtime.InteropServices;
 
-    using Il2CppSystem.Collections;
-
     using MelonLoader;
 
     using UnhollowerBaseLib;
@@ -46,7 +44,7 @@
 
         private static unsafe TDelegate Patch<TDelegate>(MethodBase originalMethod, IntPtr patchDetour)
         {
-            IntPtr original = *(IntPtr*)(IntPtr)UnhollowerUtils.GetIl2CppMethodInfoPointerFieldForGeneratedMethod(originalMethod).GetValue(null);
+            IntPtr original = *(IntPtr*)UnhollowerSupport.MethodBaseToIl2CppMethodInfoPointer(originalMethod);
             MelonUtils.NativeHookAttach((IntPtr)(&original), patchDetour);
             return Marshal.GetDelegateForFunctionPointer<TDelegate>(original);
         }
@@ -62,19 +60,19 @@
             disablePerformanceStatsEntry =
                 settingsCategory.CreateEntry("DisablePerformanceStats", true, "Disable Performance Stats") as MelonPreferences_Entry<bool>;
 
-            MethodInfo calculatePerformanceStatsMethod = typeof(AvatarPerformance).GetMethods(BindingFlags.Public | BindingFlags.Static).First(
+            MethodInfo calculatePerformanceStatsMethod = typeof(AvatarPerformance).GetMethods(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly).Single(
                 m => m.Name.StartsWith("Method_Public_Static_Void_String_GameObject_AvatarPerformanceStats_")
                      && m.ReturnType == typeof(void)
                      && m.GetParameters().Length == 3);
             calculatePerformanceStats = Patch<CalculatePerformanceStats>(calculatePerformanceStatsMethod, GetDetour(nameof(CalculatePerformanceStatsPatch)));
 
-            MethodInfo calculatePerformanceStatsEnumeratorMethod = typeof(AvatarPerformance).GetMethods(BindingFlags.Public | BindingFlags.Static).First(
+            MethodInfo calculatePerformanceStatsEnumeratorMethod = typeof(AvatarPerformance).GetMethods(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly).Single(
                 m => m.Name.StartsWith("Method_Public_Static_IEnumerator_String_GameObject_AvatarPerformanceStats") && m.GetParameters().Length == 3);
             calculatePerformanceStatsEnumerator = Patch<CalculatePerformanceStatsEnumerator>(
                 calculatePerformanceStatsEnumeratorMethod,
                 GetDetour(nameof(CalculatePerformanceStatsEnumeratorPatch)));
 
-            MethodInfo applyPerformanceFiltersMethod = typeof(AvatarPerformance).GetMethods(BindingFlags.Public | BindingFlags.Static).First(
+            MethodInfo applyPerformanceFiltersMethod = typeof(AvatarPerformance).GetMethods(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly).Single(
                 m => m.Name.StartsWith("Method_Public_Static_IEnumerator_GameObject_AvatarPerformanceStats_PerformanceRating_MulticastDelegate")
                      && m.GetParameters().Length == 4);
             applyPerformanceFiltersEnumerator = Patch<ApplyPerformanceFiltersEnumerator>(
@@ -128,11 +126,7 @@
         private delegate void CalculatePerformanceStats(IntPtr avatarNamePtr, IntPtr avatarObjectPtr, IntPtr performanceStatsPtr, IntPtr stackPtr);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        private delegate IntPtr CalculatePerformanceStatsEnumerator(
-            IntPtr avatarNamePtr,
-            IntPtr avatarObjectPtr,
-            IntPtr performanceStatsPtr,
-            IntPtr stackPtr);
+        private delegate IntPtr CalculatePerformanceStatsEnumerator(IntPtr avatarNamePtr, IntPtr avatarObjectPtr, IntPtr performanceStatsPtr, IntPtr stackPtr);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate IntPtr ApplyPerformanceFiltersEnumerator(

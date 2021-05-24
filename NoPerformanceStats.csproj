@@ -31,36 +31,48 @@
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
       <HintPath>F:\SteamLibrary\steamapps\common\VRChat\MelonLoader\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Il2Cppmscorlib, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>F:\SteamLibrary\steamapps\common\VRChat\MelonLoader\Managed\Il2Cppmscorlib.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="MelonLoader, Version=0.3.0.0, Culture=neutral, PublicKeyToken=null">
+    <Reference Include="MelonLoader, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>F:\SteamLibrary\steamapps\common\VRChat\MelonLoader\MelonLoader.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="UnhollowerBaseLib, Version=0.4.13.0, Culture=neutral, PublicKeyToken=null">
+    <Reference Include="UnhollowerBaseLib, Version=0.4.13.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>F:\SteamLibrary\steamapps\common\VRChat\MelonLoader\Managed\UnhollowerBaseLib.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="UnhollowerRuntimeLib, Version=0.4.10.0, Culture=neutral, PublicKeyToken=null">
+    <Reference Include="UnhollowerRuntimeLib, Version=0.4.10.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>F:\SteamLibrary\steamapps\common\VRChat\MelonLoader\Managed\UnhollowerRuntimeLib.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>F:\SteamLibrary\steamapps\common\VRChat\MelonLoader\Managed\UnityEngine.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.CoreModule, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>F:\SteamLibrary\steamapps\common\VRChat\MelonLoader\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.InputModule, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>F:\SteamLibrary\steamapps\common\VRChat\MelonLoader\Managed\UnityEngine.InputModule.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VRCSDK2, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>F:\SteamLibrary\steamapps\common\VRChat\MelonLoader\Managed\VRCSDK2.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
