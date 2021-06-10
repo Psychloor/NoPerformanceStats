@@ -8,8 +8,6 @@
 
     using MelonLoader;
 
-    using UnhollowerBaseLib;
-
     using UnityEngine;
 
     using VRCSDK2.Validation.Performance;
@@ -23,7 +21,7 @@
 
         public const string Company = null;
 
-        public const string Version = "1.1.0";
+        public const string Version = "1.1.1";
 
         public const string DownloadLink = "https://github.com/Psychloor/NoPerformanceStats/";
 
@@ -58,7 +56,7 @@
         {
             settingsCategory = MelonPreferences.CreateCategory("NoPerformanceStats", "No Performance Stats");
             disablePerformanceStatsEntry =
-                settingsCategory.CreateEntry("DisablePerformanceStats", true, "Disable Performance Stats") as MelonPreferences_Entry<bool>;
+                settingsCategory.CreateEntry("DisablePerformanceStats", true, "Disable Performance Stats");
 
             MethodInfo calculatePerformanceStatsMethod = typeof(AvatarPerformance).GetMethods(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly).Single(
                 m => m.Name.StartsWith("Method_Public_Static_Void_String_GameObject_AvatarPerformanceStats_")
