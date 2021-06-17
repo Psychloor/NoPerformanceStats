@@ -1,4 +1,4 @@
-Converted the mod to Native Patches instead of Harmony and to ML 0.3.0 Alpha
+Converted the mod to Native Patches instead of Harmony and to ML 0.4.0 Alpha
 
 # Credits to ImTiara
 If you plan on using my code in your own project, please make sure to properly credit me! :)
