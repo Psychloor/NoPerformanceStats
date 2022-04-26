@@ -62,10 +62,6 @@
 
         private void ApplyPatches()
         {
-            // MethodInfo performanceScanMethod = typeof(PerformanceScannerSet).GetMethod(
-            //     nameof(PerformanceScannerSet.RunPerformanceScanEnumerator),
-            //     BindingFlags.Public | BindingFlags.Instance);    
-            
             MethodInfo performanceScanMethod = typeof(AvatarPerformanceStats).GetMethod(
                 nameof(AvatarPerformanceStats.CalculatePerformanceRating),
                 BindingFlags.Public | BindingFlags.Instance);
